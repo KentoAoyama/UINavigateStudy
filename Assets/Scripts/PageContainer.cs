@@ -6,15 +6,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RectMask2D))]
 public class PageContainer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Tooltip("‚±‚ÌPageContainer‚Ì–¼‘O")]
+    [SerializeField] 
+    private string _name = "";
 
-    // Update is called once per frame
-    void Update()
+    public string GetName()
     {
-        
+        return !string.IsNullOrWhiteSpace(_name) ? _name : nameof(gameObject.name);
     }
 }

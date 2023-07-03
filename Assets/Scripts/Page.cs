@@ -1,18 +1,26 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Page : MonoBehaviour
+public abstract class Page : MonoBehaviour, IGuiComponentLifeCycleEvent
 {
-    // Start is called before the first frame update
-    void Start()
+    [Tooltip("Page‚Ì–¼‘O")]
+    [SerializeField]
+    private string _name = "";
+
+    public string GetName()
     {
-        
+        return !string.IsNullOrWhiteSpace(_name) ? _name : nameof(gameObject.name);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract UniTask CloseIn();
+
+    public abstract UniTask CloseOut();
+
+    public abstract UniTask Initialize();
+
+    public abstract UniTask OpenIn();
+
+    public abstract UniTask OpenOut();
 }
